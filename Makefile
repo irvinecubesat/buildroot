@@ -347,7 +347,13 @@ $(BUILD_DIR)/buildroot-config/auto.conf: $(CONFIG_DIR)/.config
 
 prepare: $(BUILD_DIR)/buildroot-config/auto.conf
 
-world: prepare dirs dependencies $(BASE_TARGETS) $(TARGETS_ALL) rootfs-cleanup installer-images
+dl/lcm-1.0.0.tgz:
+	wget -O  dl/lcm.zip https://github.com/lcm-proj/lcm/releases/download/v1.0.0/lcm-1.0.0.zip
+	(cd dl; unzip lcm.zip; tar cvzf lcm-1.0.0.tgz --remove-files lcm-1.0.0; rm lcm.zip)
+	mkdir -p output/build/host-lcm
+	touch output/build/host-lcm/.stamp_downloaded
+
+world:  prepare dirs dl/lcm-1.0.0.tgz dependencies $(BASE_TARGETS) $(TARGETS_ALL) rootfs-cleanup installer-images
 
 .PHONY: all world dirs clean distclean source outputmakefile \
 	$(BASE_TARGETS) $(TARGETS) $(TARGETS_ALL) \
