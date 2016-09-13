@@ -13,7 +13,7 @@
 #
 LCM_VERSION:=1.0.0
 LCM_SOURCE = lcm-$(LCM_VERSION).tgz
-LCM_SITE = https://github.com/lcm-proj/lcm/releases/download/v$(LCM_VERSION
+LCM_SITE = https://github.com/lcm-proj/lcm/releases/download/v$(LCM_VERSION)
 
 #LCM_AUTORECONF = YES
 #LCM_DEPENDENCIES =
