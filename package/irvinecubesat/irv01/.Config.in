@@ -1,0 +1,10 @@
+####
+#
+# Irvine 01 cubesat software package.  
+#
+####
+
+IRV01_VERSION = 0.0
+IRV01_SOURCE=irvine-01-sw-$(IRV01_VERSION).tar.gz
+IRV01_SITE=https://github.com/irvinecubesat/irvine-01-sw
+IRV01_SITE_METHOD=git

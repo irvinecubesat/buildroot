@@ -1,0 +1,30 @@
+config BR2_PACKAGE_IRV01
+       bool "irv01"
+       select BR2_PACKAGE_LIBSATPKT
+       select BR2_PACKAGE_LIBPROC
+       select BR2_PACKAGE_LIBGPIO
+       help
+        irvine 01 software package
+
+        http://github/irvinecubesat/irvine-01-sw
+
+choice
+    prompt "irv01 version"
+    depends on BR2_PACKAGE_IRV01
+    default BR2_PACKAGE_IRV01_version_head
+    help
+        The git version (tag) to use
+    config BR2_PACKAGE_IRV01_version_head
+           bool "HEAD"
+
+    config BR2_PACKAGE_IRV01_version_custom
+           bool "Custom version"
+
+endchoice
+
+config BR2_PACKAGE_IRV01_CONFIG_CUSTOM_VERSION_STR
+       string "irvine-01-sw version (tag)" 
+       depends on BR2_PACKAGE_IRV01
+       depends on BR2_PACKAGE_IRV01_version_custom
+       help
+        Specify a git tag to use for building

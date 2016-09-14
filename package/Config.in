@@ -1,5 +1,7 @@
 menu "Package Selection for the target"
 
+source "package/irvinecubesat/Config.in"
+
 source "package/polysat/Config.in"
 
 source "package/fs_customizations/Config.in"

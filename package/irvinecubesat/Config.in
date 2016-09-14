@@ -1,0 +1,11 @@
+menu "Irvine Cubesat Packages"
+
+#
+# Start off with one package to minimize buildroot churn.  As we develop
+# reusable components or need more customizability we can split into multiple
+# packages
+# 
+#
+source "package/irvinecubesat/irv01/Config.in"
+
+endmenu
