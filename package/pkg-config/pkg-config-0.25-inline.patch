@@ -1,0 +1,25 @@
+--- host-pkg-config-0.25/glib-1.2.10/glib.h.orig	2016-09-13 08:34:05.418759326 -0700
++++ host-pkg-config-0.25/glib-1.2.10/glib.h	2016-09-13 08:38:21.549396192 -0700
+@@ -178,6 +178,14 @@
+  * we special case most of the stuff, so inline functions can have a normal
+  * implementation by defining G_INLINE_FUNC to extern and G_CAN_INLINE to 1.
+  */
++
++/* patch to get linking working under Fedora 23 */
++#if defined(__GNUC_STDC_INLINE__)
++  #define G_INLINE_FUNC extern inline __attribute__((gnu_inline))
++  #define G_CAN_INLINE 1
++#endif
++
++
+ #ifndef G_INLINE_FUNC
+ #  define G_CAN_INLINE 1
+ #endif
+@@ -1567,6 +1575,7 @@
+  */
+ void	g_atexit		(GVoidFunc    func);
+ 
++
+ /* Bit tests
+  */
+ G_INLINE_FUNC gint	g_bit_nth_lsf (guint32 mask,

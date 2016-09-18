@@ -1,0 +1,11 @@
+--- host-module-init-tools-3.15/Makefile.in.orig	2016-09-17 21:08:43.750377780 -0700
++++ host-module-init-tools-3.15/Makefile.in	2016-09-17 21:08:12.759284743 -0700
+@@ -274,7 +274,7 @@
+ modinfo_SOURCES = modinfo.c zlibsupport.c zlibsupport.h testing.h
+ modindex_SOURCES = modindex.c zlibsupport.c zlibsupport.h testing.h
+ insmod_static_SOURCES = insmod.c
+-insmod_static_LDFLAGS = -static
++#insmod_static_LDFLAGS = -static
+ # We don't want the $(zlib_flags) here: that makes a dynamic executable
+ insmod_static_LDADD = libmodtools.a
+ EXTRA_insmod_SOURCES = 
