@@ -353,7 +353,12 @@ dl/lcm-1.0.0.tgz:
 	mkdir -p output/build/host-lcm
 	touch output/build/host-lcm/.stamp_downloaded
 
-world:  prepare dirs dl/lcm-1.0.0.tgz dependencies $(BASE_TARGETS) $(TARGETS_ALL) rootfs-cleanup installer-images
+dl/polysat_fsw-1.0.1.tgz:
+	wget -O dl/polysat_fsw-1.0.1.tgz $(shell cat ~/.polysat_fsw.auth) https://satcom.calpoly.edu/fsw/polysat_fsw-1.0.1.tgz
+	mkdir -p output/build/polysat_fsw-1.0.1
+	touch output/build/polysat_fsw-1.0.1/.stamp_downloaded
+
+world:  prepare dirs dl/lcm-1.0.0.tgz dl/polysat_fsw-1.0.1.tgz dependencies $(BASE_TARGETS) $(TARGETS_ALL) rootfs-cleanup installer-images
 
 .PHONY: all world dirs clean distclean source outputmakefile \
 	$(BASE_TARGETS) $(TARGETS) $(TARGETS_ALL) \
