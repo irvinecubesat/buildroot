@@ -32,6 +32,7 @@
 # macro will automatically generate a compressed filesystem image.
 
 TOOLCHAIN_ROOT=/opt/toolchain/toolchain-arm-linux
+FAKEROOT_ROOT?=$(TOOLCHAIN_ROOT)
 FAKEROOT_SCRIPT = $(BUILD_DIR)/_fakeroot.fs
 FULL_DEVICE_TABLE = $(BUILD_DIR)/_device_table.txt
 ROOTFS_DEVICE_TABLES = $(call qstrip,$(BR2_ROOTFS_DEVICE_TABLE)) \
@@ -93,7 +94,7 @@ endif
 endif
 	echo "$(ROOTFS_$(2)_CMD)" >> $(FAKEROOT_SCRIPT)
 	chmod a+x $(FAKEROOT_SCRIPT)
-	$(TOOLCHAIN_ROOT)/bin/fakeroot -- $(FAKEROOT_SCRIPT)
+	$(FAKEROOT_ROOT)/bin/fakeroot -- $(FAKEROOT_SCRIPT)
 	-@rm -f $(FAKEROOT_SCRIPT) $(FULL_DEVICE_TABLE)
 	$(foreach hook,$(ROOTFS_$(2)_POST_GEN_HOOKS),$(call $(hook))$(sep))
 ifeq ($$(BR2_TARGET_ROOTFS_$(2)_GZIP),y)
@@ -137,7 +138,7 @@ endif
 endif
 	echo "$(ROOTFS_$(2)_CMD)" >> $(FAKEROOT_SCRIPT)
 	chmod a+x $(FAKEROOT_SCRIPT)
-	$(TOOLCHAIN_ROOT)/bin/fakeroot -- $(FAKEROOT_SCRIPT)
+	$(FAKEROOT_ROOT)/bin/fakeroot -- $(FAKEROOT_SCRIPT)
 	-@rm -f $(FAKEROOT_SCRIPT) $(FULL_DEVICE_TABLE)
 	$(foreach hook,$(ROOTFS_$(2)_POST_GEN_HOOKS),$(call $(hook))$(sep))
 ifeq ($$(BR2_TARGET_ROOTFS_$(2)_GZIP),y)
@@ -169,7 +170,7 @@ $(BINARIES_DIR)/usr_local.$(1): $(BINARIES_DIR)/snapshot.target.tar $(USR_LOCAL_
 	echo "chown -R 0:0 $(TARGET_DIR)/usr/local" >> $(FAKEROOT_SCRIPT)
 	echo "$(USR_LOCAL_$(2)_CMD)" >> $(FAKEROOT_SCRIPT)
 	chmod a+x $(FAKEROOT_SCRIPT)
-	$(TOOLCHAIN_ROOT)/bin/fakeroot -- $(FAKEROOT_SCRIPT)
+	$(FAKEROOT_ROOT)/bin/fakeroot -- $(FAKEROOT_SCRIPT)
 	-@rm -f $(FAKEROOT_SCRIPT)
 	$(foreach hook,$(USR_LOCAL_$(2)_POST_GEN_HOOKS),$(call $(hook))$(sep))
 ifeq ($$(BR2_TARGET_USR_LOCAL_$(2)_GZIP),y)
@@ -195,7 +196,7 @@ $(BINARIES_DIR)/%.usr_local.$(1): $(BINARIES_DIR)/snapshot.%.target.tar $(USR_LO
 	echo "chown -R 0:0 $(TARGET_DIR)/usr/local" >> $(FAKEROOT_SCRIPT)
 	echo "$(USR_LOCAL_$(2)_CMD)" >> $(FAKEROOT_SCRIPT)
 	chmod a+x $(FAKEROOT_SCRIPT)
-	$(TOOLCHAIN_ROOT)/bin/fakeroot -- $(FAKEROOT_SCRIPT)
+	$(FAKEROOT_ROOT)/bin/fakeroot -- $(FAKEROOT_SCRIPT)
 	-@rm -f $(FAKEROOT_SCRIPT)
 	$(foreach hook,$(USR_LOCAL_$(2)_POST_GEN_HOOKS),$(call $(hook))$(sep))
 ifeq ($$(BR2_TARGET_USR_LOCAL_$(2)_GZIP),y)

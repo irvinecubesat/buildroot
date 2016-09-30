@@ -353,19 +353,7 @@ dl/lcm-1.0.0.tgz:
 	mkdir -p output/build/host-lcm
 	touch output/build/host-lcm/.stamp_downloaded
 
-dl/polysat_fsw-1.0.1.tgz:
-	wget -O dl/polysat_fsw-1.0.1.tgz $(shell cat ~/.polysat_fsw.auth) https://satcom.calpoly.edu/fsw/polysat_fsw-1.0.1.tgz
-	mkdir -p output/build/polysat_fsw-1.0.1
-	touch output/build/polysat_fsw-1.0.1/.stamp_downloaded
-
-dl/PolySatBootstrap-v1.25.tar.gz:
-	wget -O dl/PolySatBootstrap-v1.25.tar.gz $(shell cat ~/.polysat_fsw.auth) https://satcom.calpoly.edu/fsw/PolySatBootstrap-v1.25.tar.gz
-	mkdir -p output/build/polysatbootstrap-v1.25
-	touch output/build/polysatbootstrap-v1.25/.stamp_downloaded
-
-polysatBins: dl/polysat_fsw-1.0.1.tgz dl/PolySatBootstrap-v1.25.tar.gz
-
-world:  prepare dirs dl/lcm-1.0.0.tgz polysatBins dependencies $(BASE_TARGETS) $(TARGETS_ALL) rootfs-cleanup installer-images
+world:  prepare dirs dl/lcm-1.0.0.tgz dependencies $(BASE_TARGETS) $(TARGETS_ALL) rootfs-cleanup installer-images
 
 .PHONY: all world dirs clean distclean source outputmakefile \
 	$(BASE_TARGETS) $(TARGETS) $(TARGETS_ALL) \
