@@ -3,7 +3,7 @@
 # lzo
 #
 #############################################################
-LZO_VERSION = 2.09
+LZO_VERSION = 2.06
 LZO_SITE = http://www.oberhumer.com/opensource/lzo/download
 LZO_INSTALL_STAGING = YES
 LZO_CONFIGURE_PREFIX=/usr/local
