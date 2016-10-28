@@ -358,7 +358,7 @@ dl/polysat_fsw-1.0.1.tgz:
 	mkdir -p output/build/polysat_fsw-1.0.1
 	touch output/build/polysat_fsw-1.0.1/.stamp_downloaded
 
-POLYSAT_BOOTSTRAP_VER=1.26
+POLYSAT_BOOTSTRAP_VER=1.27
 
 dl/PolySatBootstrap-v$(POLYSAT_BOOTSTRAP_VER).tar.gz:
 	wget -O dl/PolySatBootstrap-v$(POLYSAT_BOOTSTRAP_VER).tar.gz $(shell cat ~/.polysat_fsw.auth) https://satcom.calpoly.edu/fsw/PolySatBootstrap-v$(POLYSAT_BOOTSTRAP_VER).tar.gz
