@@ -365,7 +365,13 @@ dl/PolySatBootstrap-v$(POLYSAT_BOOTSTRAP_VER).tar.gz:
 	mkdir -p output/build/polysatbootstrap-v$(POLYSAT_BOOTSTRAP_VER)
 	touch output/build/polysatbootstrap-v$(POLYSAT_BOOTSTRAP_VER)/.stamp_downloaded
 
-polysatBins: dl/polysat_fsw-1.0.1.tgz dl/PolySatBootstrap-v$(POLYSAT_BOOTSTRAP_VER).tar.gz
+polysatBins: removeEmpty dl/polysat_fsw-1.0.1.tgz dl/PolySatBootstrap-v$(POLYSAT_BOOTSTRAP_VER).tar.gz
+
+#
+# Remove empty files that might have been created when decrypting failed
+#
+removeEmpty:
+	find dl -type f -empty -delete
 
 world:  prepare dirs dl/lcm-1.0.0.tgz polysatBins dependencies $(BASE_TARGETS) $(TARGETS_ALL) rootfs-cleanup installer-images
  
