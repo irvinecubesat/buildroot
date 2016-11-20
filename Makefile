@@ -236,6 +236,7 @@ KERNEL_ARCH:=$(shell echo "$(ARCH)" | sed -e "s/-.*//" \
 ZCAT:=$(call qstrip,$(BR2_ZCAT))
 BZCAT:=$(call qstrip,$(BR2_BZCAT))
 XZCAT:=$(call qstrip,$(BR2_XZCAT))
+ZIPCAT:=$(call qstrip,$(BR2_ZIPCAT))
 TAR_OPTIONS=$(call qstrip,$(BR2_TAR_OPTIONS)) -xf
 
 # packages compiled for the host go here
@@ -347,34 +348,13 @@ $(BUILD_DIR)/buildroot-config/auto.conf: $(CONFIG_DIR)/.config
 
 prepare: $(BUILD_DIR)/buildroot-config/auto.conf
 
-dl/lcm-1.0.0.tgz:
-	wget -O  dl/lcm.zip https://github.com/lcm-proj/lcm/releases/download/v1.0.0/lcm-1.0.0.zip
-	(cd dl; unzip lcm.zip; tar cvzf lcm-1.0.0.tgz --remove-files lcm-1.0.0; rm lcm.zip)
-	mkdir -p output/build/host-lcm
-	touch output/build/host-lcm/.stamp_downloaded
-
-dl/polysat_fsw-1.0.1.tgz:
-	wget -O dl/polysat_fsw-1.0.1.tgz $(shell cat ~/.polysat_fsw.auth) https://satcom.calpoly.edu/fsw/polysat_fsw-1.0.1.tgz
-	mkdir -p output/build/polysat_fsw-1.0.1
-	touch output/build/polysat_fsw-1.0.1/.stamp_downloaded
-
-POLYSAT_BOOTSTRAP_VER=1.27
-
-dl/PolySatBootstrap-v$(POLYSAT_BOOTSTRAP_VER).tar.gz:
-	wget -O dl/PolySatBootstrap-v$(POLYSAT_BOOTSTRAP_VER).tar.gz $(shell cat ~/.polysat_fsw.auth) https://satcom.calpoly.edu/fsw/PolySatBootstrap-v$(POLYSAT_BOOTSTRAP_VER).tar.gz
-	mkdir -p output/build/polysatbootstrap-v$(POLYSAT_BOOTSTRAP_VER)
-	touch output/build/polysatbootstrap-v$(POLYSAT_BOOTSTRAP_VER)/.stamp_downloaded
-
-polysatBins: removeEmpty dl/polysat_fsw-1.0.1.tgz dl/PolySatBootstrap-v$(POLYSAT_BOOTSTRAP_VER).tar.gz
-
 #
 # Remove empty files that might have been created when decrypting failed
 #
 removeEmpty:
 	find dl -type f -empty -delete
 
-world:  prepare dirs dl/lcm-1.0.0.tgz polysatBins dependencies $(BASE_TARGETS) $(TARGETS_ALL) rootfs-cleanup installer-images
- 
+world:  prepare dirs dependencies $(BASE_TARGETS) $(TARGETS_ALL) rootfs-cleanup installer-images
 
 .PHONY: all world dirs clean distclean source outputmakefile \
 	$(BASE_TARGETS) $(TARGETS) $(TARGETS_ALL) \
