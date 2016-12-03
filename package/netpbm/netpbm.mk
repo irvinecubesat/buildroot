@@ -14,7 +14,7 @@ NETPBM_INSTALL_TARGET=YES
 
 #   make -C CC=$(TARGET_CC) $(@D)
 define NETPBM_BUILD_CMDS
-   make CC=$(TARGET_CC) -C $(@D)
+   make CC=$(TARGET_CC) STAGING_DIR=$(STAGING_DIR) -C $(@D)
 endef
 
 define NETPBM_INSTALL_TARGET_CMDS
@@ -28,6 +28,7 @@ define NETPBM_POST_PATCH_CMDS
 endef
 NETPBM_POST_PATCH_HOOKS+=NETPBM_POST_PATCH_CMDS
 
+$(eval $(call GENTARGETS,package,netpbm, host))
 $(eval $(call GENTARGETS,package,netpbm))
 
 #   cp $(@D)/

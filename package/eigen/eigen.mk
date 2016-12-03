@@ -20,4 +20,4 @@ define EIGEN_INSTALL_STAGING_CMDS
 	cp -a $(@D)/Eigen $(STAGING_DIR)/usr/include/
 endef
 
-$(eval $(generic-package))
+$(eval $(GENTARGETS))
