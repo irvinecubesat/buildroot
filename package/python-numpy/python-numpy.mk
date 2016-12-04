@@ -37,6 +37,11 @@ define PYTHON_NUMPY_BUILD_CMDS
 		$(HOST_DIR)/usr/bin/python setup.py build --fcompiler=/opt/toolchain/toolchain-arm-linux/arm-unknown-linux-uclibcgnueabi/bin/gfortran)
 endef
 
+define PYTHON_NUMPY_INSTALL_TARGET_CMDS
+	(cd $(@D); PYTHONPATH=$(TARGET_DIR)/usr/lib/python$(PYTHON_VERSION_MAJOR)/site-packages \
+	$(HOST_DIR)/usr/bin/python setup.py install --prefix=$(TARGET_DIR)/usr/local)
+endef
+
 # Some package may include few headers from NumPy, so let's install it
 # in the staging area.
 PYTHON_NUMPY_INSTALL_STAGING = YES
