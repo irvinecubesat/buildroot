@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PYTHON_PYFITS
+	bool "python-pyfits"
+    depends on BR2_PACKAGE_PYTHON
+	help
+	  Pyfits reads fits images and tables into numpy arrays and manipulates FITS headers
+	  with Python.
+
+	  https://pypi.python.org/pypi/pyfits/3.4

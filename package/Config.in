@@ -272,6 +272,7 @@ source "package/python-pygame/Config.in"
 source "package/python-serial/Config.in"
 source "package/python-setuptools/Config.in"
 source "package/python-numpy/Config.in"
+source "package/python-pyfits/Config.in"
 endmenu
 endif
 source "package/ruby/Config.in"

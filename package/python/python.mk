@@ -24,13 +24,11 @@ HOST_PYTHON_CONF_OPT += 	\
 	--disable-curses	\
 	--disable-codecs-cjk	\
 	--disable-nis		\
-	--disable-unicodedata	\
 	--disable-dbm		\
 	--disable-gdbm		\
 	--disable-bsddb		\
 	--disable-test-modules	\
-	--disable-bz2		\
-	--disable-ssl
+	--disable-bz2
 
 HOST_PYTHON_MAKE_ENV = \
 	PYTHON_MODULES_INCLUDE=$(HOST_DIR)/usr/include \
@@ -130,7 +128,7 @@ PYTHON_CONF_OPT += \
 	--disable-dbm
 
 PYTHON_MAKE_ENV = \
-	PYTHON_MODULES_INCLUDE=$(STAGING_DIR)/usr/local/include \
+	PYTHON_MODULES_INCLUDE="$(STAGING_DIR)/usr/local/include $(STAGING_DIR)/usr/include" \
 	PYTHON_MODULES_LIB="$(STAGING_DIR)/lib $(STAGING_DIR)/usr/lib $(STAGING_DIR)/usr/local/lib"
 
 # python distutils adds -L$LIBDIR when linking binary extensions, causing
