@@ -49,7 +49,7 @@ define HOST_PYTHON_CONFIGURE_CMDS
 	)
 endef
 
-PYTHON_DEPENDENCIES  = host-python libffi
+PYTHON_DEPENDENCIES  = host-python libffi zlib
 
 HOST_PYTHON_DEPENDENCIES = host-expat host-zlib host-openssl
 
