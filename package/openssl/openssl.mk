@@ -60,7 +60,34 @@ define OPENSSL_CONFIGURE_CMDS
 	$(SED) "s:-O[0-9]:$(OPENSSL_CFLAGS):" $(@D)/Makefile
 endef
 
+define HOST_OPENSSL_CONFIGURE_CMDS
+	(cd $(@D); \
+		$(HOST_CONFIGURE_ARGS) \
+		$(HOST_CONFIGURE_OPTS) \
+		./Configure \
+			linux-generic32 \
+			--prefix=/usr \
+			--openssldir=/etc/ssl \
+			--libdir=/lib \
+			threads \
+			shared \
+			no-idea \
+			no-rc5 \
+			enable-camellia \
+			enable-mdc2 \
+			enable-tlsext \
+			zlib-dynamic \
+	)
+	$(SED) "s:-march=[-a-z0-9] ::" -e "s:-mcpu=[-a-z0-9] ::g" $(@D)/Makefile
+	$(SED) "s:-O[0-9]:$(OPENSSL_CFLAGS):" $(@D)/Makefile
+endef
+
 define OPENSSL_BUILD_CMDS
+	$(MAKE1) -C $(@D) all build-shared
+	$(MAKE1) -C $(@D) do_linux-shared
+endef
+
+define HOST_OPENSSL_BUILD_CMDS
 	$(MAKE1) -C $(@D) all build-shared
 	$(MAKE1) -C $(@D) do_linux-shared
 endef
@@ -71,6 +98,10 @@ endef
 
 define OPENSSL_INSTALL_TARGET_CMDS
 	$(MAKE1) -C $(@D) INSTALL_PREFIX=$(TARGET_DIR) install
+endef
+
+define HOST_OPENSSL_INSTALL_CMDS
+	$(MAKE1) -C $(@D) INSTALL_PREFIX=$(HOST_DIR) install
 endef
 
 define OPENSSL_REMOVE_DEV_FILES
@@ -116,3 +147,4 @@ define OPENSSL_UNINSTALL_CMDS
 endef
 
 $(eval $(call GENTARGETS))
+$(eval $(call GENTARGETS,host))
