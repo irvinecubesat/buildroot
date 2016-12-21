@@ -431,7 +431,7 @@ JPEGHDR_DIR = $(STAGING_DIR)/usr/local/include/
 
 PNGVER = 14
 PNGLIB = $(STAGING_DIR)/usr/local/lib/libpng$(PNGVER).so
-PNGHDR_DIR = $(STAGING_DIR)/usr/localinclude/libpng$(PNGVER)
+PNGHDR_DIR = $(STAGING_DIR)/usr/local/include/libpng$(PNGVER)
 #PNGLIB = NONE
 #PNGHDR_DIR =
 #PNGVER = 
