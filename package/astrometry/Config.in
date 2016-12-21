@@ -5,7 +5,6 @@ config BR2_PACKAGE_ASTROMETRY
        select BR2_PACKAGE_PYTHON
        select BR2_PACKAGE_NETPBM
        select BR2_PACKAGE_CFITSIO
-       select BR2_PACKAGE_CAIRO
        help
         astrometry Star Tracking Software
 

@@ -33,11 +33,12 @@ endif
 
 #CFLAGS="-g -Wall  -pthread -march=armv5 -O3 -fomit-frame-pointer -DNDEBUG -fpic -Winline -I../include -I../include/astrometry -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -I. -I../include -I../gsl-an -I../include/astrometry" LDFLAGS="-lpthread" 
 define ASTROMETRY_BUILD_CMDS
-export CC=/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc;$(MAKE) ARCH_FLAGS="-march=armv5" CC="/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc" CFITS_LIB="-L../../cfitsio-3390 -lcfitsio" -C $(@D)
+export CC=/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc;$(MAKE) ARCH_FLAGS="-march=armv5" CC="/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc" CFITS_INC="-I$(STAGING_DIR)/usr/include" CFITS_LIB="-L../../cfitsio-3390/ -lcfitsio -lpthread" -C $(@D)
 endef
 
 define ASTROMETRY_INSTALL_TARGET_CMDS
 	touch $(@D)/report.txt
-	$(MAKE) INSTALL_DIR=$(TARGET_DIR) -C $(@D) install-core
+export CC=/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc;$(MAKE) ARCH_FLAGS="-march=armv5" CC="/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc" CFITS_INC="-I$(STAGING_DIR)/usr/include" CFITS_LIB="-L../../cfitsio-3390/ -lcfitsio -lpthread" INSTALL_DIR=$(TARGET_DIR) -C $(@D) install-core
+#	$(MAKE) INSTALL_DIR=$(TARGET_DIR) -C $(@D) install-core
 endef
 $(eval $(GENTARGETS))
