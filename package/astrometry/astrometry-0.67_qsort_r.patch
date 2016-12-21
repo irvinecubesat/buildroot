@@ -1,0 +1,22 @@
+--- astrometry-0.67/util/qsort_reentrant.c.orig	2016-12-18 12:45:41.875455104 -0800
++++ astrometry-0.67/util/qsort_reentrant.c	2016-12-18 12:48:34.392898147 -0800
+@@ -103,8 +103,9 @@
+ }
+ 
+ #ifdef I_AM_QSORT_R
++/* rename to avoid conflict with stdlib qsort_r*/
+ void
+-qsort_r(void *a, size_t n, size_t es, void *thunk, cmp_t *cmp)
++qsort_reentrant(void *a, size_t n, size_t es, void *thunk, cmp_t *cmp)
+ #else
+ #define thunk NULL
+ void
+@@ -178,7 +179,7 @@
+         vecswap(pb, pn - r, r);
+         if ((r = pb - pa) > es)
+ #ifdef  I_AM_QSORT_R
+-                qsort_r(a, r / es, es, thunk, cmp);
++                qsort_reentrant(a, r / es, es, thunk, cmp);
+ #else
+                 qsort(a, r / es, es, cmp);
+ #endif

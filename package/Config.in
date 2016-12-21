@@ -4,6 +4,10 @@ source "package/eigen/Config.in"
 
 source "package/irvinecubesat/Config.in"
 
+source "package/cfitsio/Config.in"
+
+source "package/astrometry/Config.in"
+
 source "package/polysat/Config.in"
 
 source "package/fs_customizations/Config.in"

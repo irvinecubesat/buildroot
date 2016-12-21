@@ -1,0 +1,31 @@
+config BR2_PACKAGE_ASTROMETRY
+       bool "astrometry"
+       select BR2_PACKAGE_ZLIB
+       select BR2_PACKAGE_JPEG
+       select BR2_PACKAGE_PYTHON
+       select BR2_PACKAGE_NETPBM
+       select BR2_PACKAGE_CFITSIO
+       select BR2_PACKAGE_CAIRO
+       help
+        astrometry Star Tracking Software
+
+choice
+    prompt "astrometry version"
+    depends on BR2_PACKAGE_ASTROMETRY
+    default BR2_PACKAGE_ASTROMETRY_version_head
+    help
+        The git version (tag) to use
+    config BR2_PACKAGE_ASTROMETRY_version_head
+           bool "HEAD"
+
+    config BR2_PACKAGE_ASTROMETRY_version_custom
+           bool "Custom version"
+
+endchoice
+
+config BR2_PACKAGE_ASTROMETRY_CONFIG_CUSTOM_VERSION_STR
+       string "astrometry version (tag)" 
+       depends on BR2_PACKAGE_ASTROMETRY
+       depends on BR2_PACKAGE_ASTROMETRY_version_custom
+       help
+        Specify a git tag to use for building
