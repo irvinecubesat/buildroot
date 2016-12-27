@@ -1,0 +1,49 @@
+--- astrometry-0.67/Makefile.orig	2016-12-26 17:28:22.112339892 -0800
++++ astrometry-0.67/Makefile	2016-12-27 10:38:49.034364870 -0800
+@@ -40,6 +40,8 @@
+ #          qfits-an/libqfits.a -- FITS files
+ #            util/libanbase.a  -- basic stuff
+ 
++STRIP ?= /opt/toolchain/toolchain-arm-linux/bin/arm-linux-strip
++
+ include $(COMMON)/makefile.common
+ #include $(COMMON)/makefile.qfits
+ #include $(COMMON)/makefile.cfitsio
+@@ -119,6 +121,37 @@
+ 	-($(MAKE) -C blind install-extra || echo "\nErrors in the previous make command are not fatal -- we try to build and install some optional code.\n\n")
+ 	@echo
+ 
++#
++# Minimum needed install for solving field 
++#
++MIN_BINS := util/an-pnmtofits blind/astrometry-engine blind/image2xy blind/solve-field
++
++# in util directory
++PYTHON_EXECS = image2pnm.py removelines.py uniformize.py __init__.py
++PYTHON_INSTALL = $(PYTHON_EXECS) addpath.py filetype.py fits.py run_command.py shell.py
++
++PY_INSTALL_DIR := $(INSTALL_DIR)/lib/python/astrometry/util
++
++install-minimal-solve:
++	mkdir -p '$(PY_INSTALL_DIR)'
++	mkdir -p '$(BIN_INSTALL_DIR)'
++	mkdir -p '$(LIB_INSTALL_DIR)'
++	cp __init__.py '$(PY_BASE_INSTALL_DIR)'
++	@for x in $(MIN_BINS); do \
++	  cp $$x $(BIN_INSTALL_DIR); \
++	done
++	@for x in $(PYTHON_INSTALL); do \
++	  cp util/$$x $(PY_INSTALL_DIR); \
++	done
++	python -m compileall $(PY_INSTALL_DIR)/*.py
++	rm $(PY_INSTALL_DIR)/*.py
++	chmod +x $(PY_INSTALL_DIR)/*.pyc
++	@for x in $(PYTHON_EXECS); do \
++	  (cd $(BIN_INSTALL_DIR); ln -s ../lib/python/astrometry/util/$${x%%.*}.pyc .); \
++	done
++
++	-$(STRIP) $(BIN_INSTALL_DIR)/* $(LIB_INSTALL_DIR)/*
++
+ install-core:
+ 	mkdir -p '$(DATA_INSTALL_DIR)'
+ 	mkdir -p '$(BIN_INSTALL_DIR)'

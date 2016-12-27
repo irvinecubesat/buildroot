@@ -38,7 +38,7 @@ endef
 
 define ASTROMETRY_INSTALL_TARGET_CMDS
 	touch $(@D)/report.txt
-export CC=/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc;$(MAKE) ARCH_FLAGS="-march=armv5" CC="/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc" CFITS_INC="-I$(STAGING_DIR)/usr/include" CFITS_LIB="-L../../cfitsio-3390/ -lcfitsio -lpthread" INSTALL_DIR=$(TARGET_DIR) -C $(@D) install-core
+export CC=/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc;$(MAKE) ARCH_FLAGS="-march=armv5" CC="/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc" CFITS_INC="-I$(STAGING_DIR)/usr/include" CFITS_LIB="-L../../cfitsio-3390/ -lcfitsio -lpthread" INSTALL_DIR=$(TARGET_DIR)/usr/local -C $(@D) install-minimal-solve
 #	$(MAKE) INSTALL_DIR=$(TARGET_DIR) -C $(@D) install-core
 endef
 $(eval $(GENTARGETS))
