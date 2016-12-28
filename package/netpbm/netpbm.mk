@@ -21,7 +21,7 @@ define NETPBM_BUILD_CMDS
 endef
 
 define NETPBM_INSTALL_TARGET_CMDS
-	cp $(@D)/converter/other/jpegtopnm $(TARGET_DIR)/usr/local/bin
+	cp $(@D)/converter/other/jpegtopnm $(@D)/converter/other/ppmtopgm $(TARGET_DIR)/usr/local/bin
 	cp $(@D)/analyzer/pamfile $(TARGET_DIR)/usr/local/bin/pnmfile
 endef
 
