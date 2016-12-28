@@ -3,4 +3,4 @@
 @@ -0,0 +1,3 @@
 +#!/bin/sh
 +# run the compiled version of the python source
-+python $(basename ${0})c
++python ${0}c $*

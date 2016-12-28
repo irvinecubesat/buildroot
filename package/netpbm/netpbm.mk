@@ -22,7 +22,7 @@ endef
 
 define NETPBM_INSTALL_TARGET_CMDS
 	cp $(@D)/converter/other/jpegtopnm $(TARGET_DIR)/usr/local/bin
-	cp $(@D)/analyzer/pamfile $(TARGET_DIR)/usr/local/bin
+	cp $(@D)/analyzer/pamfile $(TARGET_DIR)/usr/local/bin/pnmfile
 endef
 
 define NETPBM_INSTALL_STAGING_CMDS

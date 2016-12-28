@@ -1,5 +1,5 @@
 --- astrometry-0.67/Makefile.orig	2016-12-28 09:29:35.324301164 -0800
-+++ astrometry-0.67/Makefile	2016-12-28 11:58:16.310684321 -0800
++++ astrometry-0.67/Makefile	2016-12-28 13:04:52.069165566 -0800
 @@ -40,6 +40,8 @@
  #          qfits-an/libqfits.a -- FITS files
  #            util/libanbase.a  -- basic stuff
@@ -9,7 +9,7 @@
  include $(COMMON)/makefile.common
  #include $(COMMON)/makefile.qfits
  #include $(COMMON)/makefile.cfitsio
-@@ -119,6 +121,47 @@
+@@ -119,6 +121,49 @@
  	-($(MAKE) -C blind install-extra || echo "\nErrors in the previous make command are not fatal -- we try to build and install some optional code.\n\n")
  	@echo
  
@@ -21,7 +21,8 @@
 +# in util directory
 +PYTHON_EXECS = image2pnm.py removelines.py uniformize.py __init__.py
 +PYTHON_INSTALL = $(PYTHON_EXECS) addpath.py filetype.py fits.py run_command.py shell.py
-+PY_INSTALL_DIR := $(INSTALL_DIR)/lib/python/astrometry/util
++PY_INSTALL_DIR := $(INSTALL_DIR)/lib/python/astrometry
++PY_UTIL_DIR=$(PY_INSTALL_DIR)/util
 +
 +#
 +# dynamic library in blind directory
@@ -31,7 +32,7 @@
 +RUN_PY := runPython
 +
 +install-minimal-solve:
-+	mkdir -p '$(PY_INSTALL_DIR)'
++	mkdir -p '$(PY_UTIL_DIR)'
 +	mkdir -p '$(BIN_INSTALL_DIR)'
 +	mkdir -p '$(LIB_INSTALL_DIR)'
 +	cp __init__.py '$(PY_BASE_INSTALL_DIR)'
@@ -39,11 +40,12 @@
 +	  cp $$x $(BIN_INSTALL_DIR); \
 +	done
 +	@for x in $(PYTHON_INSTALL); do \
-+	  cp util/$$x $(PY_INSTALL_DIR); \
++	  cp util/$$x $(PY_UTIL_DIR); \
 +	done
-+	python -m compileall $(PY_INSTALL_DIR)/*.py
-+	rm $(PY_INSTALL_DIR)/*.py
-+	chmod +x $(PY_INSTALL_DIR)/*.pyc
++	cp util/__init__.pyc $(PY_INSTALL_DIR)
++	python -m compileall $(PY_UTIL_DIR)/*.py
++	rm $(PY_UTIL_DIR)/*.py
++	chmod +x $(PY_UTIL_DIR)/*.pyc
 +	cp $(RUN_PY) $(BIN_INSTALL_DIR)
 +	chmod +x $(BIN_INSTALL_DIR)/$(RUN_PY)
 +	@for x in $(PYTHON_EXECS); do \
