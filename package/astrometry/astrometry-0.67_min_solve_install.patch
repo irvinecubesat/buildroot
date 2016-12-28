@@ -42,10 +42,10 @@
 +	@for x in $(PYTHON_INSTALL); do \
 +	  cp util/$$x $(PY_UTIL_DIR); \
 +	done
-+	cp util/__init__.pyc $(PY_INSTALL_DIR)
 +	python -m compileall $(PY_UTIL_DIR)/*.py
 +	rm $(PY_UTIL_DIR)/*.py
 +	chmod +x $(PY_UTIL_DIR)/*.pyc
++	cp $(PY_UTIL_DIR)/__init__.pyc $(PY_INSTALL_DIR)
 +	cp $(RUN_PY) $(BIN_INSTALL_DIR)
 +	chmod +x $(BIN_INSTALL_DIR)/$(RUN_PY)
 +	@for x in $(PYTHON_EXECS); do \
