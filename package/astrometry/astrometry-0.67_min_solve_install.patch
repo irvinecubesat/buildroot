@@ -1,5 +1,5 @@
 --- astrometry-0.67/Makefile.orig	2016-12-28 09:29:35.324301164 -0800
-+++ astrometry-0.67/Makefile	2016-12-28 09:38:14.852281823 -0800
++++ astrometry-0.67/Makefile	2016-12-28 09:57:44.047390903 -0800
 @@ -40,6 +40,8 @@
  #          qfits-an/libqfits.a -- FITS files
  #            util/libanbase.a  -- basic stuff
@@ -44,10 +44,10 @@
 +	rm $(PY_INSTALL_DIR)/*.py
 +	chmod +x $(PY_INSTALL_DIR)/*.pyc
 +	@for x in $(PYTHON_EXECS); do \
-+	  (cd $(BIN_INSTALL_DIR); ln -s ../lib/python/astrometry/util/$${x%%.*}.pyc .); \
++	  (cd $(BIN_INSTALL_DIR); ln -sf ../lib/python/astrometry/util/$${x%%.*}.pyc .); \
 +	done
 +	mkdir -p $(LIB_INSTALL_DIR)/python-2.7/site-packages
-+	(cd $(LIB_INSTALL_DIR)/python-2.7/site-packages; ln -s ../../python/astrometry .)
++	(cd $(LIB_INSTALL_DIR)/python-2.7/site-packages; ln -sf ../../python/astrometry .)
 +	cp blind/$(ASTRO_LIB) $(LIB_INSTALL_DIR)/
 +	-$(STRIP) $(BIN_INSTALL_DIR)/* $(LIB_INSTALL_DIR)/*
 +
