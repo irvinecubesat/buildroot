@@ -33,7 +33,5 @@ define NETPBM_POST_PATCH_CMDS
 endef
 NETPBM_POST_PATCH_HOOKS+=NETPBM_POST_PATCH_CMDS
 
-$(eval $(call GENTARGETS,package,netpbm, host))
-$(eval $(call GENTARGETS,package,netpbm))
-
-#   cp $(@D)/
+$(eval $(call GENTARGETS,host))
+$(eval $(call GENTARGETS))

@@ -28,5 +28,5 @@ endif
 
 $(eval $(cmake-package))
 
-$(eval $(call CMAKETARGETS,package,clapack,host))
-$(eval $(call CMAKETARGETS,package,clapack))
+$(eval $(call CMAKETARGETS,host))
+$(eval $(call CMAKETARGETS))
