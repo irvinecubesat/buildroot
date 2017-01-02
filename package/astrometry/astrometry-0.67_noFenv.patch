@@ -1,0 +1,13 @@
+--- astrometry-0.67/util/resample.c	2016-12-18 12:52:38.607525316 -0800
++++ astrometry-0.67/util/resample.c.new	2016-12-18 12:51:43.954384961 -0800
+@@ -7,7 +7,9 @@
+ #include <math.h>
+ #include <assert.h>
+ 
+-#include <fenv.h>
++// disable fenv
++//
++//#include <fenv.h>
+ 
+ #include "resample.h"
+ #include "os-features.h"

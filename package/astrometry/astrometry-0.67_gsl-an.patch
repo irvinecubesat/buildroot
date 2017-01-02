@@ -1,0 +1,11 @@
+--- astrometry-0.67/gsl-an/Makefile.orig	2016-11-25 11:37:07.643932237 -0800
++++ astrometry-0.67/gsl-an/Makefile	2016-11-25 11:37:33.936993781 -0800
+@@ -202,7 +202,7 @@
+ 	$(RANLIB) $@
+ 
+ config.h: configure config.h.in
+-	./configure --enable-shared=no --prefix=`pwd`/stage
++	./configure --enable-shared=no --host=arm-unknown-linux-uclibcgnueabi --prefix=`pwd`/stage CC=/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc
+ 	touch $@
+ 
+ config.h.in: ;

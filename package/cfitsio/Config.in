@@ -1,0 +1,5 @@
+config BR2_PACKAGE_CFITSIO
+       bool "cfitsio"
+       help
+        cfitsio C FITS i/o librar
+        
