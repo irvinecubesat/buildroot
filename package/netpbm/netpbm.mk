@@ -29,7 +29,7 @@ define NETPBM_INSTALL_STAGING_CMDS
 endef
 
 define NETPBM_POST_PATCH_CMDS
-   cp $(TOPDIR)/package/netpbm/config.mk $(@D)
+   cp $(TOPDIR)/package/netpbm/Makefile.config $(@D)/config.mk
 endef
 NETPBM_POST_PATCH_HOOKS+=NETPBM_POST_PATCH_CMDS
 
