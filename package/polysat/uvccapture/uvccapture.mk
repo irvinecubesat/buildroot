@@ -1,9 +1,9 @@
 #############################################################
 #
-# Polysat customized uvccapture
+# Irvine Cubesat customized uvccapture
 #
 #############################################################
-UVCCAPTURE_SITE:=https://github.com/PolySat/uvccapture.git
+UVCCAPTURE_SITE:=https://github.com/irvinecubesat/uvccapture.git
 UVCCAPTURE_SITE_METHOD:=git
 UVCCAPTURE_INSTALL_TARGET=YES
 UVCCAPTURE_DEPENDENCIES=jpeg polysat_fsw

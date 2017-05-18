@@ -3,6 +3,7 @@ config BR2_PACKAGE_IRV01
        select BR2_PACKAGE_LIBSATPKT
        select BR2_PACKAGE_LIBPROC
        select BR2_PACKAGE_LIBGPIO
+       select BR2_PACKAGE_I2C_TOOLS
        help
         irvine 01 software package
 
