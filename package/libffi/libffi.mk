@@ -5,7 +5,8 @@
 #############################################################
 
 LIBFFI_VERSION = 3.0.11
-LIBFFI_SITE    = ftp://sources.redhat.com/pub/libffi/
+LIBFFI_SITE    = https://github.com/libffi/libffi/archive/
+LIBFFI_SOURCE  = v$(LIBFFI_VERSION).tar.gz
 
 LIBFFI_INSTALL_STAGING = YES
 

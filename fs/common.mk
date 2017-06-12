@@ -31,7 +31,7 @@
 # BR2_TARGET_ROOTFS_$(FSTYPE)_LZMA exist and are enabled, then the
 # macro will automatically generate a compressed filesystem image.
 
-TOOLCHAIN_ROOT=/opt/toolchain/toolchain-arm-linux
+TOOLCHAIN_ROOT=$(shell dirname -- $(TARGET_CROSS)gcc)/../
 FAKEROOT_ROOT?=$(TOOLCHAIN_ROOT)
 FAKEROOT_SCRIPT = $(BUILD_DIR)/_fakeroot.fs
 FULL_DEVICE_TABLE = $(BUILD_DIR)/_device_table.txt

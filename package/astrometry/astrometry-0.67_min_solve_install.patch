@@ -4,7 +4,7 @@
  #          qfits-an/libqfits.a -- FITS files
  #            util/libanbase.a  -- basic stuff
  
-+STRIP ?= /opt/toolchain/toolchain-arm-linux/bin/arm-linux-strip
++STRIP ?= $(TARGET_STRIP)
 +
  include $(COMMON)/makefile.common
  #include $(COMMON)/makefile.qfits
