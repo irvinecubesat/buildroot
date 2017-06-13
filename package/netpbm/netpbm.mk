@@ -13,23 +13,23 @@ NETPBM_CONFIGURE_EXEC_PREFIX=/usr/local
 #NETPBM_INSTALL_STAGING=YES
 NETPBM_INSTALL_TARGET=YES
 
-NETPBM_DEPENDENCIES=libpng
+NETPBM_DEPENDENCIES=libpng libxml2
 
 define NETPBM_BUILD_CMDS
-   $(MAKE) CC=${HOST_CC} -C $(@D) buildtools/{endiangen,typegen,libopt}
-   $(MAKE) CC=${TARGET_CC} -C $(@D)
+   make -C $(@D) CC="${HOSTCC}" buildtools/{endiangen,typegen,libopt}
+   make -C $(@D) CC="${TARGET_CC}"
 endef
 
 define NETPBM_INSTALL_TARGET_CMDS
-	$(CP) $(@D)/converter/other/jpegtopnm $(@D)/converter/other/ppmtopgm $(TARGET_DIR)/usr/local/bin
-	$(CP) $(@D)/analyzer/pamfile $(TARGET_DIR)/usr/local/bin/pnmfile
+	cp $(@D)/converter/other/jpegtopnm $(@D)/converter/other/ppmtopgm $(TARGET_DIR)/usr/local/bin
+	cp $(@D)/analyzer/pamfile $(TARGET_DIR)/usr/local/bin/pnmfile
 endef
 
 define NETPBM_INSTALL_STAGING_CMDS
 endef
 
 define NETPBM_POST_PATCH_CMDS
-   $(SED) "s^__STAGING_DIR__^$(STAGING_DIR)^g" $(TOPDIR)/package/netpbm/Makefile.config >$(@D)/config.mk
+   sed -e "s^__STAGING_DIR__^$(STAGING_DIR)^g" $(TOPDIR)/package/netpbm/Makefile.config >$(@D)/config.mk
 endef
 NETPBM_POST_PATCH_HOOKS+=NETPBM_POST_PATCH_CMDS
 
