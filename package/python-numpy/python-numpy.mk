@@ -10,6 +10,7 @@ PYTHON_NUMPY_SITE = http://downloads.sourceforge.net/numpy
 PYTHON_NUMPY_LICENSE = BSD-3-Clause
 PYTHON_NUMPY_LICENSE_FILES = LICENSE.txt
 PYTHON_NUMPY_SETUP_TYPE = distutils
+PYTHON_NUMPY_DEPENDENCIES = python host-python
 
 ifeq ($(BR2_PACKAGE_CLAPACK),y)
 PYTHON_NUMPY_DEPENDENCIES += clapack
