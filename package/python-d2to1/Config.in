@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PYTHON_D2TO1
+	bool "python-d2to1"
+	depends on BR2_PACKAGE_PYTHON
+	select BR2_PACKAGE_PYTHON_ZLIB
+	help
+	  Download, build, install, upgrade, and uninstall Python packages.
+
+	  http://pypi.python.org/pypi/setuptools

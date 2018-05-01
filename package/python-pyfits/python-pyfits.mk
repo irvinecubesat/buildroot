@@ -11,7 +11,7 @@ PYTHON_PYFITS_LICENSE = BSD-3c
 PYTHON_PYFITS_LICENSE_FILES = LICENSE.txt
 PYTHON_PYFITS_SETUP_TYPE = distutils
 
-PYTHON_PYFITS_DEPENDENCIES=host-python-setuptools python-numpy host-python-numpy zlib
+PYTHON_PYFITS_DEPENDENCIES=host-python-setuptools host-python-stsci-distutils python-stsci-distutils python-numpy host-python-numpy zlib
 
 define PYTHON_PYFITS_CONFIGURE_CMDS
 	-rm -f $(@D)/site.cfg
