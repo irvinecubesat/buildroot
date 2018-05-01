@@ -129,13 +129,13 @@ endif
 ifndef HOSTAS
 HOSTAS:=as
 endif
-ifndef HOSTCC
-HOSTCC:=gcc
+ifndef HOSTCC8
+HOSTCC:=gcc-4.8
 HOSTCC:=$(shell which $(HOSTCC) || type -p $(HOSTCC) || echo gcc)
 endif
 HOSTCC_NOCCACHE:=$(HOSTCC)
 ifndef HOSTCXX
-HOSTCXX:=g++
+HOSTCXX:=g++-4.8
 HOSTCXX:=$(shell which $(HOSTCXX) || type -p $(HOSTCXX) || echo g++)
 endif
 HOSTCXX_NOCCACHE:=$(HOSTCXX)

@@ -1,0 +1,9 @@
+--- a/serve_image.c.orig	2018-05-01 10:05:10.171665851 -0700
++++ b/serve_image.c	2018-05-01 10:05:36.414202579 -0700
+@@ -1,5 +1,5 @@
+ #define PROGRAM_NAME "serve_image"
+-#define _POSIX_C_SOURCE 199309
++#define _POSIX_C_SOURCE 200112L
+ 
+ #include <time.h>
+ #include <errno.h>

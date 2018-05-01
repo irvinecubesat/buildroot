@@ -1,0 +1,27 @@
+--- a/mkfs.ubifs/hashtable/hashtable_itr.h.orig	2018-05-01 10:13:58.638681944 -0700
++++ b/mkfs.ubifs/hashtable/hashtable_itr.h	2018-05-01 10:04:10.623604631 -0700
+@@ -28,20 +28,22 @@
+ /* hashtable_iterator_key
+  * - return the value of the (key,value) pair at the current position */
+ 
++/*
+ extern inline void *
+ hashtable_iterator_key(struct hashtable_itr *i)
+ {
+     return i->e->k;
+ }
+-
++*/
+ /*****************************************************************************/
+ /* value - return the value of the (key,value) pair at the current position */
+-
++/*
+ extern inline void *
+ hashtable_iterator_value(struct hashtable_itr *i)
+ {
+     return i->e->v;
+ }
++*/
+ 
+ /*****************************************************************************/
+ /* advance - advance the iterator to the next element
