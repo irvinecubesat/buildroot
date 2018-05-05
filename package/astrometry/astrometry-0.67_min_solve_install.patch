@@ -16,7 +16,7 @@
 +#
 +# Minimum needed install for solving field 
 +#
-+MIN_BINS := util/an-pnmtofits blind/astrometry-engine blind/image2xy blind/solve-field
++MIN_BINS := util/an-pnmtofits util/wcsinfo blind/astrometry-engine blind/image2xy blind/solve-field
 +
 +# in util directory
 +PYTHON_EXECS = image2pnm.py removelines.py uniformize.py __init__.py
