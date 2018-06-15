@@ -21,7 +21,7 @@ ASTROMETRY_INSTALL_STAGING = NO
 #
 ASTROMETRY_INSTALL_TARGET = YES
 
-ASTROMETRY_DEPENDENCIES=cfitsio
+ASTROMETRY_DEPENDENCIES=cfitsio zlib
 
 ifeq ($(BR2_PACKAGE_ASTROMETRY_version_custom),y)
 	ASTROMETRY_VERSION=$(subst ",,$(BR2_PACKAGE_ASTROMETRY_CONFIG_CUSTOM_VERSION_STR))
@@ -33,12 +33,12 @@ endif
 
 #CFLAGS="-g -Wall  -pthread -march=armv5 -O3 -fomit-frame-pointer -DNDEBUG -fpic -Winline -I../include -I../include/astrometry -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE -I. -I../include -I../gsl-an -I../include/astrometry" LDFLAGS="-lpthread" 
 define ASTROMETRY_BUILD_CMDS
-export CC=/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc;$(MAKE) ARCH_FLAGS="-march=armv5" CC="/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc" CFITS_INC="-I$(STAGING_DIR)/usr/include" CFITS_LIB="-L../../cfitsio-3390/ -lcfitsio -lpthread" -C $(@D)
+export CC="${TARGET_CC}";$(MAKE) ARCH_FLAGS="-march=armv5" CC="${TARGET_CC}" CFITS_INC="-I$(STAGING_DIR)/usr/include" CFITS_LIB="-L../../cfitsio-3390/ -lcfitsio -lpthread" -C $(@D)
 endef
 
 define ASTROMETRY_INSTALL_TARGET_CMDS
 	touch $(@D)/report.txt
-export CC=/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc;$(MAKE) ARCH_FLAGS="-march=armv5" CC="/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc" CFITS_INC="-I$(STAGING_DIR)/usr/include" CFITS_LIB="-L../../cfitsio-3390/ -lcfitsio -lpthread" INSTALL_DIR=$(TARGET_DIR)/usr/local -C $(@D) install-minimal-solve
+export CC="${TARGET_CC}";$(MAKE) ARCH_FLAGS="-march=armv5" CC="${TARGET_CC}" CFITS_INC="-I$(STAGING_DIR)/usr/include" CFITS_LIB="-L../../cfitsio-3390/ -lcfitsio -lpthread" INSTALL_DIR=$(TARGET_DIR)/usr/local -C $(@D) install-minimal-solve
 #	$(MAKE) INSTALL_DIR=$(TARGET_DIR) -C $(@D) install-core
 endef
 $(eval $(GENTARGETS))

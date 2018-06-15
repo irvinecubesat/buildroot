@@ -13,11 +13,11 @@ NETPBM_CONFIGURE_EXEC_PREFIX=/usr/local
 #NETPBM_INSTALL_STAGING=YES
 NETPBM_INSTALL_TARGET=YES
 
-NETPBM_DEPENDENCIES=libpng
+NETPBM_DEPENDENCIES=libpng libxml2
 
 define NETPBM_BUILD_CMDS
-   make -C $(@D) CC=gcc buildtools/{endiangen,typegen,libopt}
-   make -C $(@D) CC=/opt/toolchain/toolchain-arm-linux/bin/arm-unknown-linux-uclibcgnueabi-gcc
+   make -C $(@D) CC="${HOSTCC}" buildtools/{endiangen,typegen,libopt}
+   make -C $(@D) CC="${TARGET_CC}"
 endef
 
 define NETPBM_INSTALL_TARGET_CMDS

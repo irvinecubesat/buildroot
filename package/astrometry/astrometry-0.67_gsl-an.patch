@@ -5,7 +5,7 @@
  
  config.h: configure config.h.in
 -	./configure --enable-shared=no --prefix=`pwd`/stage
-+	./configure --enable-shared=no --host=arm-unknown-linux-uclibcgnueabi --prefix=`pwd`/stage CC=/opt/toolchain/toolchain-arm-linux/bin/arm-linux-gcc
++	./configure --enable-shared=no --host=arm-unknown-linux-uclibcgnueabi --prefix=`pwd`/stage CC=${TARGET_CC}
  	touch $@
  
  config.h.in: ;

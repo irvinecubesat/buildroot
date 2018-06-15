@@ -13,7 +13,7 @@ LIBPNG_DEPENDENCIES = host-pkg-config zlib
 LIBPNG_CONFIGURE_PREFIX=/usr/local
 LIBPNG_CONFIGURE_EXEC_PREFIX=/usr/local
 
-define LIBPNG_STAGING_LIBPNG12_CONFIG_FIXUP
+define LIBPNG_STAGING_LIBPNG14_CONFIG_FIXUP
 	$(SED) "s,^prefix=.*,prefix=\'$(STAGING_DIR)/usr/local\',g" \
 		-e "s,^exec_prefix=.*,exec_prefix=\'$(STAGING_DIR)/usr/local\',g" \
 		-e "s,^includedir=.*,includedir=\'$(STAGING_DIR)/usr/local/include/libpng$(LIBPNG_SERIES)\',g" \
@@ -33,7 +33,7 @@ define LIBPNG_REMOVE_CONFIG_SCRIPTS
 endef
 
 ifneq ($(BR2_HAVE_DEVFILES),y)
-LIBPNG_POST_INSTALL_TARGET_HOOKS += LIBPNG_REMOVE_CONFIG_SCRIPTS
+#LIBPNG_POST_INSTALL_TARGET_HOOKS += LIBPNG_REMOVE_CONFIG_SCRIPTS
 endif
 
 $(eval $(call AUTOTARGETS))
