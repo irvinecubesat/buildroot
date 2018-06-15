@@ -12,7 +12,12 @@ log()
 #
 # Extract version from issue in usr_local tar file
 #
-versionDirName=$(tar -Oxvf output/images/fsw_image/usr_local.tar ./etc/issue | head -1|cut -d' ' -f 4-|sed -e "s/ - / /g;" -e "s/ /_/g;")
+FSW_IMAGE_DIR=output/images/fsw_image
+LOCAL_TAR=$FSW_IMAGE_DIR/usr_local.tar
+if [ ! -e "$LOCAL_TAR" ]; then
+  LOCAL_TAR=$FSW_IMAGE_DIR/fsw_image.usr_local.tar
+fi
+versionDirName=$(tar -Oxvf "$LOCAL_TAR" ./etc/issue | head -1|cut -d' ' -f 4-|sed -e "s/ - / /g;" -e "s/ /_/g;")
 fsw_image_root=output/images/fsw_image
 baseName=fsw_image
 satIp=${SAT_IP-irvine-02}
